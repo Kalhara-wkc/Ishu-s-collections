@@ -198,7 +198,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {featuredProducts.map((product, index) => (
-            <Link href={`/product/LKR {product.id}`} key={product.id}>
+            <Link href={`/product/${product.id}`} key={product.id}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"

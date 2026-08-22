@@ -10,15 +10,21 @@ export const metadata: Metadata = {
   description: "Exclusive collection of luxury women's handbags. Where timeless elegance meets modern sophistication.",
 };
 
+import { CartProvider } from "./context/CartContext";
+import ChatWidget from "./components/ChatWidget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`LKR {inter.variable} LKR {playfair.variable}`}>
-      <body className={`LKR {inter.className} antialiased`}>
-        {children}
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className={`${inter.className} antialiased`}>
+        <CartProvider>
+          {children}
+          <ChatWidget />
+        </CartProvider>
       </body>
     </html>
   );

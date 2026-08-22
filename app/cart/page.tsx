@@ -7,46 +7,12 @@ import { Minus, Plus, Trash2, ArrowRight, ShieldCheck } from "lucide-react";
 import TopBar from "../components/TopBar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState } from "react";
-
-const initialCartItems = [
-  { 
-    id: 1, 
-    name: "The Classic Elegance", 
-    price: 1250, 
-    image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800",
-    quantity: 1,
-    color: "Cognac"
-  },
-  { 
-    id: 3, 
-    name: "Champagne Tote", 
-    price: 1450, 
-    image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800",
-    quantity: 1,
-    color: "Champagne"
-  },
-];
+import { useCart } from "../context/CartContext";
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const { cart: cartItems, updateQuantity, removeFromCart: removeItem, cartTotal: subtotal } = useCart();
 
-  const updateQuantity = (id: number, delta: number) => {
-    setCartItems(items => items.map(item => {
-      if (item.id === id) {
-        const newQuantity = Math.max(1, item.quantity + delta);
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    }));
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shipping = subtotal > 500 ? 0 : 50;
+  const shipping = subtotal > 15000 || subtotal === 0 ? 0 : 500;
   const total = subtotal + shipping;
 
   return (
@@ -97,7 +63,7 @@ export default function CartPage() {
                       <div className="flex justify-between items-start">
                         <div>
                           <h3 className="text-xl font-serif font-semibold mb-1 hover:text-accent-gold transition-colors">
-                            <Link href={`/product/LKR {item.id}`}>{item.name}</Link>
+                            <Link href={`/product/${item.id}`}>{item.name}</Link>
                           </h3>
                           <p className="text-sm text-text-primary/60 font-light mb-4">Color: {item.color}</p>
                         </div>
@@ -148,7 +114,7 @@ export default function CartPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-text-primary/70">Shipping</span>
-                      <span>{shipping === 0 ? 'Complimentary' : `$LKR {shipping}`}</span>
+                      <span>{shipping === 0 ? 'Complimentary' : `$${shipping}`}</span>
                     </div>
                     <div className="flex justify-between text-text-primary/50 text-xs">
                       <span>Taxes calculated at checkout</span>

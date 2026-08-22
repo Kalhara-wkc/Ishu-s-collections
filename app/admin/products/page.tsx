@@ -2,17 +2,34 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Plus, Search, Edit2, Trash2 } from "lucide-react";
-
-const initialProducts = [
-  { id: 1, name: "The Classic Elegance", price: "LKR 1,250", category: "Tote Bags", stock: 15, status: "Active", image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=100" },
-  { id: 2, name: "Midnight Clutch", price: "LKR 890", category: "Clutches", stock: 8, status: "Active", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=100" },
-  { id: 3, name: "Champagne Tote", price: "LKR 1,450", category: "Tote Bags", stock: 0, status: "Out of Stock", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=100" },
-  { id: 4, name: "Onyx Crossbody", price: "LKR 1,100", category: "Crossbody", stock: 24, status: "Active", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=100" },
-];
+import { Plus, Search, Edit2, Trash2, X } from "lucide-react";
+import { useAdmin } from "../../context/AdminContext";
 
 export default function AdminProducts() {
-  const [products] = useState(initialProducts);
+  const { products, addProduct, deleteProduct, toggleProductStatus } = useAdmin();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Form State
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("Tote Bags");
+  const [stock, setStock] = useState("");
+  
+  const handleAddProduct = (e: React.FormEvent) => {
+    e.preventDefault();
+    addProduct({
+      name,
+      price: `LKR ${parseFloat(price).toLocaleString()}`,
+      category,
+      stock: parseInt(stock),
+      status: parseInt(stock) > 0 ? "Active" : "Out of Stock",
+      image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=100" // Placeholder
+    });
+    setIsModalOpen(false);
+    setName("");
+    setPrice("");
+    setStock("");
+  };
 
   return (
     <div className="space-y-6">
@@ -21,7 +38,7 @@ export default function AdminProducts() {
           <h1 className="text-2xl font-bold text-gray-900">Products</h1>
           <p className="text-gray-500 mt-1">Manage your store's inventory and product details.</p>
         </div>
-        <button className="bg-text-primary hover:bg-accent-gold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors text-sm font-medium">
+        <button onClick={() => setIsModalOpen(true)} className="bg-text-primary hover:bg-accent-gold text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors text-sm font-medium">
           <Plus className="w-4 h-4" /> Add Product
         </button>
       </div>
@@ -74,7 +91,7 @@ export default function AdminProducts() {
                   <td className="px-6 py-4 text-sm text-gray-600">{product.category}</td>
                   <td className="px-6 py-4 text-sm font-medium text-gray-900">{product.price}</td>
                   <td className="px-6 py-4 text-sm text-gray-600">{product.stock}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 cursor-pointer" onClick={() => toggleProductStatus(product.id)}>
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       product.status === "Active" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                     }`}>
@@ -86,7 +103,7 @@ export default function AdminProducts() {
                       <button className="text-text-primary/50 hover:text-accent-gold transition-colors">
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      <button className="text-text-primary/50 hover:text-red-500 transition-colors">
+                      <button onClick={() => deleteProduct(product.id)} className="text-text-primary/50 hover:text-red-500 transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -95,8 +112,48 @@ export default function AdminProducts() {
               ))}
             </tbody>
           </table>
+          {products.length === 0 && (
+            <div className="text-center py-12 text-gray-500">No products found.</div>
+          )}
         </div>
       </div>
+
+      {/* Add Product Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-surface w-full max-w-md rounded-xl p-6 relative">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+              <X className="w-5 h-5" />
+            </button>
+            <h2 className="text-xl font-bold mb-6">Add New Product</h2>
+            <form onSubmit={handleAddProduct} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                <input required type="text" value={name} onChange={e => setName(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:ring-accent-gold focus:border-accent-gold outline-none" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Price (LKR)</label>
+                <input required type="number" value={price} onChange={e => setPrice(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:ring-accent-gold focus:border-accent-gold outline-none" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                <select value={category} onChange={e => setCategory(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:ring-accent-gold focus:border-accent-gold outline-none">
+                  <option>Tote Bags</option>
+                  <option>Clutches</option>
+                  <option>Crossbody</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Stock Quantity</label>
+                <input required type="number" value={stock} onChange={e => setStock(e.target.value)} className="w-full border border-gray-300 rounded-md p-2 focus:ring-accent-gold focus:border-accent-gold outline-none" />
+              </div>
+              <button type="submit" className="w-full bg-text-primary text-white py-2 rounded-md hover:bg-accent-gold transition-colors mt-4">
+                Save Product
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

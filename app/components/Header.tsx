@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingCart, Menu, User, Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 export default function Header() {
+  const { cartCount } = useCart();
+
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-bg-primary/95 border-b border-text-primary/10 shadow-sm transition-all duration-300">
       <div className="w-full px-4 sm:px-8 lg:px-16 h-16 md:h-20 flex items-center justify-between">
@@ -65,9 +68,11 @@ export default function Header() {
 
           <Link href="/cart" className="relative group hover:scale-110 transition-transform">
             <ShoppingCart className="w-6 h-6 text-text-primary" />
-            <span className="absolute -top-2 -right-2 bg-accent-gold text-text-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-              2
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-accent-gold text-text-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                {cartCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>

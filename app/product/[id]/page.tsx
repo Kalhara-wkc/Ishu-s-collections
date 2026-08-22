@@ -9,17 +9,20 @@ import TopBar from "../../components/TopBar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
+import { useCart } from "../../context/CartContext";
+
 const allProducts = [
-  { id: 1, name: "The Classic Elegance", price: "LKR 1,250", image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800", description: "A timeless masterpiece crafted from full-grain calf leather. Perfect for any occasion that demands sophistication." },
-  { id: 2, name: "Midnight Clutch", price: "LKR 890", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=800", description: "Sleek and mysterious. This clutch is the ultimate companion for your evening gala, featuring gold-plated hardware." },
-  { id: 3, name: "Champagne Tote", price: "LKR 1,450", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800", description: "Spacious and elegant. The Champagne Tote fits your essentials while maintaining a graceful silhouette." },
-  { id: 4, name: "Onyx Crossbody", price: "LKR 1,100", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800", description: "Hands-free luxury. The Onyx Crossbody is designed for the dynamic woman who refuses to compromise on style." },
+  { id: 1, name: "The Classic Elegance", price: "LKR 12,500", image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800", description: "A timeless masterpiece crafted from full-grain calf leather. Perfect for any occasion that demands sophistication." },
+  { id: 2, name: "Midnight Clutch", price: "LKR 8,900", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=800", description: "Sleek and mysterious. This clutch is the ultimate companion for your evening gala, featuring gold-plated hardware." },
+  { id: 3, name: "Champagne Tote", price: "LKR 14,500", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800", description: "Spacious and elegant. The Champagne Tote fits your essentials while maintaining a graceful silhouette." },
+  { id: 4, name: "Onyx Crossbody", price: "LKR 11,000", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800", description: "Hands-free luxury. The Onyx Crossbody is designed for the dynamic woman who refuses to compromise on style." },
 ];
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const unwrappedParams = use(params);
   const productId = parseInt(unwrappedParams.id);
   const product = allProducts.find(p => p.id === productId);
+  const { addToCart } = useCart();
 
   if (!product) {
     return (
@@ -85,9 +88,18 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
             <div className="flex flex-col gap-4">
               <div className="flex gap-4">
-                <Link href="/cart" className="flex-1 bg-text-primary hover:bg-accent-gold text-white py-5 px-8 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-medium transition-colors duration-300">
+                <button 
+                  onClick={() => addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")),
+                    quantity: 1,
+                    image: product.image
+                  })}
+                  className="flex-1 bg-text-primary hover:bg-accent-gold text-white py-5 px-8 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-medium transition-colors duration-300"
+                >
                   <ShoppingBag className="w-5 h-5" /> Add to Cart
-                </Link>
+                </button>
                 <button className="p-5 border border-text-primary/20 hover:border-accent-gold hover:text-accent-gold transition-colors duration-300 flex items-center justify-center">
                   <Heart className="w-6 h-6" />
                 </button>

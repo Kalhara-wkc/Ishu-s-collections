@@ -5,9 +5,16 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import TopBar from "../../components/TopBar";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { useEffect } from "react";
+import { useCart } from "../../context/CartContext";
 
 export default function CheckoutSuccessPage() {
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
+
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-gold selection:text-white flex flex-col">
       <TopBar />

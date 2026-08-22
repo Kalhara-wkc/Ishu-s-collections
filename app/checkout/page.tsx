@@ -7,9 +7,13 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import TopBar from "../components/TopBar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useCart } from "../context/CartContext";
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { cartTotal: subtotal } = useCart();
+  const shipping = subtotal > 15000 || subtotal === 0 ? 0 : 500;
+  const total = subtotal + shipping;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,7 +88,7 @@ export default function CheckoutPage() {
               <div className="bg-surface p-8 border border-text-primary/5">
                 <h2 className="text-xl font-serif font-semibold mb-6">Payment Method</h2>
                 <div className="border border-accent-gold bg-accent-gold/5 p-4 flex items-center gap-4 cursor-pointer">
-                  <input type="radio" id="cod" name="payment" value="cod" defaultChecked className="w-4 h-4 accent-[#D4AF37]" />
+                  <input type="radio" id="cod" name="payment" value="cod" defaultChecked className="w-4 h-4 accent-accent-gold" />
                   <label htmlFor="cod" className="cursor-pointer text-sm font-medium tracking-wide">Cash on Delivery (COD)</label>
                 </div>
                 <p className="text-xs text-text-primary/60 mt-4 font-light">
@@ -106,15 +110,20 @@ export default function CheckoutPage() {
               <div className="space-y-4 mb-6 text-sm font-light">
                 <div className="flex justify-between">
                   <span className="text-text-primary/70">Subtotal</span>
-                  <span>Calculated at checkout</span>
+                  <span>LKR {subtotal.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-primary/70">Shipping</span>
-                  <span>Complimentary</span>
+                  <span>{shipping === 0 ? 'Complimentary' : `LKR ${shipping.toLocaleString()}`}</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-xs text-text-primary/60 uppercase tracking-wider mt-6 pt-6 border-t border-text-primary/10">
+              <div className="flex justify-between items-center mb-8 pt-4 border-t border-text-primary/10">
+                <span className="text-lg font-medium">Estimated Total</span>
+                <span className="text-2xl font-serif font-bold text-accent-gold">LKR {total.toLocaleString()}</span>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 text-xs text-text-primary/60 uppercase tracking-wider mt-6 border-t border-text-primary/10 pt-6">
                 <ShieldCheck className="w-4 h-4 text-accent-gold" /> Secure Checkout
               </div>
             </div>

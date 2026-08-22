@@ -42,7 +42,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         {categoryProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {categoryProducts.map((product, index) => (
-              <Link href={`/product/LKR {product.id}`} key={product.id}>
+              <Link href={`/product/${product.id}`} key={product.id}>
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
