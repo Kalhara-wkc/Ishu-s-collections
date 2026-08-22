@@ -17,10 +17,10 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-[#4A0E4E] text-white flex flex-col h-screen fixed left-0 top-0">
+    <aside className="w-64 bg-text-primary text-white flex flex-col h-screen fixed left-0 top-0">
       {/* Brand */}
       <div className="h-20 flex items-center gap-3 px-6 border-b border-white/10">
-        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D4AF37]/50">
+        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-accent-gold/50">
           <Image src="/logo.jpeg" alt="Logo" fill className="object-cover" />
         </div>
         <span className="font-serif font-bold text-lg tracking-wider text-[#E5D3B3]">
@@ -39,8 +39,8 @@ export default function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                 isActive 
-                  ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30" 
-                  : "text-white/70 hover:bg-white/5 hover:text-white"
+                  ? "bg-accent-gold/20 text-accent-gold border border-accent-gold/30" 
+                  : "text-white/70 hover:bg-surface/5 hover:text-white"
               }`}
             >
               <Icon className="w-5 h-5" />
@@ -54,7 +54,7 @@ export default function Sidebar() {
       <div className="p-4 border-t border-white/10">
         <Link 
           href="/"
-          className="flex items-center gap-3 px-4 py-3 rounded-md text-white/70 hover:bg-white/5 hover:text-white transition-colors"
+          className="flex items-center gap-3 px-4 py-3 rounded-md text-white/70 hover:bg-surface/5 hover:text-white transition-colors"
         >
           <LogOut className="w-5 h-5" />
           <span className="font-medium text-sm tracking-wide">Exit to Store</span>

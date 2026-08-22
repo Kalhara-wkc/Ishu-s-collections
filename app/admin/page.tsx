@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TrendingUp, Users, ShoppingBag, DollarSign } from "lucide-react";
 
 const stats = [
-  { name: "Total Revenue", value: "$45,231.89", change: "+20.1%", icon: DollarSign },
+  { name: "Total Revenue", value: "LKR 45,231.89", change: "+20.1%", icon: DollarSign },
   { name: "Orders", value: "+350", change: "+15.2%", icon: ShoppingBag },
   { name: "Active Customers", value: "+2,340", change: "+12.4%", icon: Users },
   { name: "Conversion Rate", value: "3.24%", change: "+4.1%", icon: TrendingUp },
@@ -28,20 +28,20 @@ export default function AdminDashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
+              className="bg-surface p-6 rounded-xl border border-text-primary/10 shadow-sm"
             >
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm font-medium text-gray-500 mb-1">{stat.name}</p>
                   <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
                 </div>
-                <div className="p-2 bg-[#F4F0F7] rounded-lg">
-                  <Icon className="w-5 h-5 text-[#4A0E4E]" />
+                <div className="p-2 bg-bg-primary rounded-lg">
+                  <Icon className="w-5 h-5 text-text-primary" />
                 </div>
               </div>
               <div className="mt-4 flex items-center text-sm">
                 <span className="text-emerald-500 font-medium">{stat.change}</span>
-                <span className="text-gray-400 ml-2">from last month</span>
+                <span className="text-text-primary/50 ml-2">from last month</span>
               </div>
             </motion.div>
           );
@@ -50,20 +50,20 @@ export default function AdminDashboard() {
 
       {/* Recent Activity Placeholder */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+        <div className="lg:col-span-2 bg-surface rounded-xl border border-text-primary/10 shadow-sm p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">Revenue Overview</h2>
-          <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center border border-dashed border-gray-200">
-            <p className="text-gray-400 font-medium">Chart visualization will appear here</p>
+          <div className="h-64 bg-surface rounded-lg flex items-center justify-center border border-dashed border-text-primary/20">
+            <p className="text-text-primary/50 font-medium">Chart visualization will appear here</p>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+        <div className="bg-surface rounded-xl border border-text-primary/10 shadow-sm p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Sales</h2>
           <div className="space-y-6">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600">
-                  {`C${i}`}
+                  {`CLKR {i}`}
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-900">Customer {i}</p>

@@ -50,7 +50,7 @@ export default function CartPage() {
   const total = subtotal + shipping;
 
   return (
-    <div className="min-h-screen bg-[#F4F0F7] text-[#4A0E4E] selection:bg-[#D4AF37] selection:text-white">
+    <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-gold selection:text-white">
       <TopBar />
       <Header />
       
@@ -60,15 +60,15 @@ export default function CartPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-[#4A0E4E]">Shopping Bag</h1>
-          <p className="text-[#4A0E4E]/70 font-light tracking-wide mb-12">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-text-primary">Shopping Bag</h1>
+          <p className="text-text-primary/70 font-light tracking-wide mb-12">
             {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your bag
           </p>
 
           {cartItems.length === 0 ? (
-            <div className="text-center py-20 bg-white border border-[#4A0E4E]/10">
-              <p className="text-xl font-light text-[#4A0E4E]/70 mb-8">Your bag is currently empty.</p>
-              <Link href="/shop" className="bg-[#4A0E4E] text-white px-10 py-4 uppercase tracking-widest text-sm hover:bg-[#D4AF37] transition-colors">
+            <div className="text-center py-20 bg-surface border border-text-primary/10">
+              <p className="text-xl font-light text-text-primary/70 mb-8">Your bag is currently empty.</p>
+              <Link href="/shop" className="bg-text-primary text-white px-10 py-4 uppercase tracking-widest text-sm hover:bg-accent-gold transition-colors">
                 Continue Shopping
               </Link>
             </div>
@@ -82,9 +82,9 @@ export default function CartPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     key={item.id} 
-                    className="flex flex-col sm:flex-row gap-6 bg-white p-6 border border-[#4A0E4E]/5 relative group"
+                    className="flex flex-col sm:flex-row gap-6 bg-surface p-6 border border-text-primary/5 relative group"
                   >
-                    <div className="relative w-full sm:w-40 h-48 sm:h-40 bg-[#F4F0F7] shrink-0">
+                    <div className="relative w-full sm:w-40 h-48 sm:h-40 bg-bg-primary shrink-0">
                       <Image 
                         src={item.image} 
                         alt={item.name} 
@@ -96,34 +96,37 @@ export default function CartPage() {
                     <div className="flex-1 flex flex-col justify-between py-2">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="text-xl font-serif font-semibold mb-1 hover:text-[#D4AF37] transition-colors">
-                            <Link href={`/product/${item.id}`}>{item.name}</Link>
+                          <h3 className="text-xl font-serif font-semibold mb-1 hover:text-accent-gold transition-colors">
+                            <Link href={`/product/LKR {item.id}`}>{item.name}</Link>
                           </h3>
-                          <p className="text-sm text-[#4A0E4E]/60 font-light mb-4">Color: {item.color}</p>
+                          <p className="text-sm text-text-primary/60 font-light mb-4">Color: {item.color}</p>
                         </div>
-                        <p className="text-lg font-medium">${item.price.toLocaleString()}</p>
+                        <p className="text-lg font-medium">LKR {item.price.toLocaleString()}</p>
                       </div>
 
                       <div className="flex justify-between items-center mt-auto">
-                        <div className="flex items-center border border-[#4A0E4E]/20">
+                        <div className="flex items-center border border-text-primary/20">
                           <button 
+                            suppressHydrationWarning
                             onClick={() => updateQuantity(item.id, -1)}
-                            className="p-2 hover:bg-[#F4F0F7] transition-colors text-[#4A0E4E]/70 hover:text-[#4A0E4E]"
+                            className="p-2 hover:bg-bg-primary transition-colors text-text-primary/70 hover:text-text-primary"
                           >
                             <Minus className="w-4 h-4" />
                           </button>
                           <span className="w-10 text-center text-sm font-medium">{item.quantity}</span>
                           <button 
+                            suppressHydrationWarning
                             onClick={() => updateQuantity(item.id, 1)}
-                            className="p-2 hover:bg-[#F4F0F7] transition-colors text-[#4A0E4E]/70 hover:text-[#4A0E4E]"
+                            className="p-2 hover:bg-bg-primary transition-colors text-text-primary/70 hover:text-text-primary"
                           >
                             <Plus className="w-4 h-4" />
                           </button>
                         </div>
                         
                         <button 
+                          suppressHydrationWarning
                           onClick={() => removeItem(item.id)}
-                          className="text-sm uppercase tracking-widest text-[#4A0E4E]/50 hover:text-red-500 transition-colors flex items-center gap-2"
+                          className="text-sm uppercase tracking-widest text-text-primary/50 hover:text-red-500 transition-colors flex items-center gap-2"
                         >
                           <Trash2 className="w-4 h-4" /> <span className="hidden sm:inline">Remove</span>
                         </button>
@@ -135,34 +138,34 @@ export default function CartPage() {
 
               {/* Order Summary */}
               <div className="w-full lg:w-1/3">
-                <div className="bg-white p-8 border border-[#4A0E4E]/5 sticky top-32">
-                  <h2 className="text-2xl font-serif font-semibold mb-6 pb-4 border-b border-[#4A0E4E]/10">Order Summary</h2>
+                <div className="bg-surface p-8 border border-text-primary/5 sticky top-32">
+                  <h2 className="text-2xl font-serif font-semibold mb-6 pb-4 border-b border-text-primary/10">Order Summary</h2>
                   
                   <div className="space-y-4 mb-6 text-sm font-light">
                     <div className="flex justify-between">
-                      <span className="text-[#4A0E4E]/70">Subtotal</span>
-                      <span>${subtotal.toLocaleString()}</span>
+                      <span className="text-text-primary/70">Subtotal</span>
+                      <span>LKR {subtotal.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#4A0E4E]/70">Shipping</span>
-                      <span>{shipping === 0 ? 'Complimentary' : `$${shipping}`}</span>
+                      <span className="text-text-primary/70">Shipping</span>
+                      <span>{shipping === 0 ? 'Complimentary' : `$LKR {shipping}`}</span>
                     </div>
-                    <div className="flex justify-between text-[#4A0E4E]/50 text-xs">
+                    <div className="flex justify-between text-text-primary/50 text-xs">
                       <span>Taxes calculated at checkout</span>
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center mb-8 pt-4 border-t border-[#4A0E4E]/10">
+                  <div className="flex justify-between items-center mb-8 pt-4 border-t border-text-primary/10">
                     <span className="text-lg font-medium">Estimated Total</span>
-                    <span className="text-2xl font-serif font-bold text-[#D4AF37]">${total.toLocaleString()}</span>
+                    <span className="text-2xl font-serif font-bold text-accent-gold">LKR {total.toLocaleString()}</span>
                   </div>
 
-                  <button className="w-full bg-[#4A0E4E] hover:bg-[#D4AF37] text-white py-4 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-medium transition-colors duration-300 mb-4">
+                  <Link href="/checkout" suppressHydrationWarning className="w-full bg-text-primary hover:bg-accent-gold text-white py-4 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-medium transition-colors duration-300 mb-4">
                     Proceed to Checkout <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </Link>
 
-                  <div className="flex items-center justify-center gap-2 text-xs text-[#4A0E4E]/60 uppercase tracking-wider mt-6">
-                    <ShieldCheck className="w-4 h-4 text-[#D4AF37]" /> Secure Checkout
+                  <div className="flex items-center justify-center gap-2 text-xs text-text-primary/60 uppercase tracking-wider mt-6">
+                    <ShieldCheck className="w-4 h-4 text-accent-gold" /> Secure Checkout
                   </div>
                 </div>
               </div>

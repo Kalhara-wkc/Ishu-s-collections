@@ -11,16 +11,16 @@ import Footer from "./components/Footer";
 
 // Placeholder data for featured collections
 const featuredProducts = [
-  { id: 1, name: "The Classic Elegance", price: "$1,250", image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800" },
-  { id: 2, name: "Midnight Clutch", price: "$890", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=800" },
-  { id: 3, name: "Champagne Tote", price: "$1,450", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800" },
-  { id: 4, name: "Onyx Crossbody", price: "$1,100", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800" },
+  { id: 1, name: "Luxury Collection Bag 1", price: "LKR 1,250", image: "/bags/bag-1.jpg" },
+  { id: 2, name: "Luxury Collection Bag 2", price: "LKR 890", image: "/bags/bag-2.jpg" },
+  { id: 3, name: "Luxury Collection Bag 3", price: "LKR 1,450", image: "/bags/bag-3.jpg" },
+  { id: 4, name: "Luxury Collection Bag 4", price: "LKR 1,100", image: "/bags/bag-4.jpg" },
 ];
 
 const categories = [
-  { id: 1, name: "Tote Bags", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800" },
-  { id: 2, name: "Crossbody", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800" },
-  { id: 3, name: "Clutches", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=800" },
+  { id: 1, name: "Tote Bags", image: "/bags/bag-5.jpg" },
+  { id: 2, name: "Crossbody", image: "/bags/bag-6.jpg" },
+  { id: 3, name: "Clutches", image: "/bags/bag-7.jpg" },
 ];
 
 const testimonials = [
@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F0F7] text-[#4A0E4E] selection:bg-[#D4AF37] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-gold selection:text-white overflow-x-hidden">
       <TopBar />
       <Header />
 
@@ -68,9 +68,9 @@ export default function Home() {
             muted 
             playsInline
             onEnded={handleHeroVideoEnded}
-            className="w-full h-full object-cover opacity-60 mix-blend-multiply"
+            className="w-full h-full object-cover opacity-80 saturate-150 contrast-110 mix-blend-multiply"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F0F7] via-transparent to-[#F4F0F7]/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F0F7] via-transparent to-[#F4F0F7]/20"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10">
@@ -79,7 +79,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" as any }}
           >
-            <h1 className="text-6xl md:text-8xl font-serif font-bold mb-6 leading-[1.1] text-[#4A0E4E]">
+            <h1 className="text-6xl md:text-8xl font-serif font-bold mb-6 leading-[1.1] text-text-primary">
               Artisan Bags <br className="hidden md:block"/> Modern Style
             </h1>
           </motion.div>
@@ -87,7 +87,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-lg md:text-2xl mb-12 text-[#4A0E4E]/80 max-w-2xl mx-auto font-light"
+            className="text-lg md:text-2xl mb-12 text-text-primary/80 max-w-2xl mx-auto font-light"
           >
             Discover our exclusive collection of luxury women&apos;s handbags, crafted from the finest materials for the modern sophisticate.
           </motion.p>
@@ -97,7 +97,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="group bg-[#D4AF37] hover:bg-[#E5D3B3] text-[#4A0E4E] px-10 py-5 rounded-none font-medium tracking-widest uppercase transition-all duration-300 flex items-center gap-4 mx-auto shadow-lg hover:shadow-2xl hover:-translate-y-1"
+              className="group bg-accent-gold hover:bg-[#E5D3B3] text-text-primary px-10 py-5 rounded-none font-medium tracking-widest uppercase transition-all duration-300 flex items-center gap-4 mx-auto shadow-lg hover:shadow-2xl hover:-translate-y-1"
             >
               Shop Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -107,7 +107,7 @@ export default function Home() {
       </motion.section>
 
       {/* Infinite Marquee */}
-      <div className="bg-[#4A0E4E] text-[#D4AF37] py-6 overflow-hidden border-y border-[#D4AF37]/20 shadow-inner">
+      <div className="bg-text-primary text-accent-gold py-6 overflow-hidden border-y border-accent-gold/20 shadow-inner">
         <div className="flex whitespace-nowrap">
           <motion.div 
             className="flex gap-12 text-sm md:text-lg font-serif italic tracking-wider"
@@ -131,23 +131,23 @@ export default function Home() {
       </div>
 
       {/* Service Benefits */}
-      <section className="py-16 px-4 bg-[#F4F0F7] border-b border-[#4A0E4E]/10">
+      <section className="py-16 px-4 bg-bg-primary border-b border-text-primary/10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="flex flex-col items-center">
-              <Truck className="w-10 h-10 text-[#D4AF37] mb-4" />
+              <Truck className="w-10 h-10 text-accent-gold mb-4" />
               <h3 className="text-xl font-serif font-semibold mb-2">Global Shipping</h3>
-              <p className="text-[#4A0E4E]/70 font-light">Complimentary delivery on all international orders.</p>
+              <p className="text-text-primary/70 font-light">Complimentary delivery on all international orders.</p>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="flex flex-col items-center">
-              <ShieldCheck className="w-10 h-10 text-[#D4AF37] mb-4" />
+              <ShieldCheck className="w-10 h-10 text-accent-gold mb-4" />
               <h3 className="text-xl font-serif font-semibold mb-2">Authenticity Guarantee</h3>
-              <p className="text-[#4A0E4E]/70 font-light">100% genuine premium leather with certificate.</p>
+              <p className="text-text-primary/70 font-light">100% genuine premium leather with certificate.</p>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="flex flex-col items-center">
-              <CreditCard className="w-10 h-10 text-[#D4AF37] mb-4" />
+              <CreditCard className="w-10 h-10 text-accent-gold mb-4" />
               <h3 className="text-xl font-serif font-semibold mb-2">Secure Payments</h3>
-              <p className="text-[#4A0E4E]/70 font-light">Encrypted checkout for your peace of mind.</p>
+              <p className="text-text-primary/70 font-light">Encrypted checkout for your peace of mind.</p>
             </motion.div>
           </div>
         </div>
@@ -156,8 +156,8 @@ export default function Home() {
       {/* Categories */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-[#4A0E4E]">Shop by Category</h2>
-          <div className="w-24 h-[2px] bg-[#D4AF37] mx-auto"></div>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-text-primary">Shop by Category</h2>
+          <div className="w-24 h-[2px] bg-accent-gold mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -183,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* Featured Collections */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-[90rem] mx-auto bg-white/50 backdrop-blur-md my-10 rounded-3xl shadow-sm border border-white">
+      <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-[90rem] mx-auto bg-surface/50 backdrop-blur-md my-10 rounded-3xl shadow-sm border border-white">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -191,14 +191,14 @@ export default function Home() {
           variants={fadeIn}
           className="text-center mb-20"
         >
-          <span className="text-[#D4AF37] font-medium tracking-widest uppercase text-sm mb-4 block">Handpicked for you</span>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-[#4A0E4E]">Featured Collections</h2>
-          <div className="w-32 h-[2px] bg-[#D4AF37] mx-auto"></div>
+          <span className="text-accent-gold font-medium tracking-widest uppercase text-sm mb-4 block">Handpicked for you</span>
+          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-text-primary">Featured Collections</h2>
+          <div className="w-32 h-[2px] bg-accent-gold mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {featuredProducts.map((product, index) => (
-            <Link href={`/product/${product.id}`} key={product.id}>
+            <Link href={`/product/LKR {product.id}`} key={product.id}>
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -207,7 +207,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 50 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.15, ease: "easeOut" as any } }
                 }}
-                className="group cursor-pointer bg-[#F4F0F7]/50 rounded-none overflow-hidden shadow-sm hover:shadow-[0_20px_50px_rgba(74,14,78,0.1)] transition-all duration-700 hover:-translate-y-3 border border-[#4A0E4E]/5 relative"
+                className="group cursor-pointer bg-bg-primary/50 rounded-none overflow-hidden shadow-sm hover:shadow-[0_20px_50px_rgba(74,14,78,0.1)] transition-all duration-700 hover:-translate-y-3 border border-text-primary/5 relative"
               >
                 <div className="relative h-96 overflow-hidden bg-gray-100">
                   <Image 
@@ -218,14 +218,14 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <button suppressHydrationWarning className="w-full bg-[#F4F0F7] text-[#4A0E4E] py-4 rounded-none font-medium tracking-widest uppercase text-sm hover:bg-[#D4AF37] hover:text-white transition-colors duration-300">
+                    <button suppressHydrationWarning className="w-full bg-bg-primary text-text-primary py-4 rounded-none font-medium tracking-widest uppercase text-sm hover:bg-accent-gold hover:text-white transition-colors duration-300">
                       View Details
                     </button>
                   </div>
                 </div>
-                <div className="p-8 text-center bg-white">
-                  <h3 className="text-2xl font-serif font-semibold mb-3 text-[#4A0E4E] group-hover:text-[#D4AF37] transition-colors duration-300">{product.name}</h3>
-                  <p className="text-[#4A0E4E]/70 font-medium tracking-wider">{product.price}</p>
+                <div className="p-8 text-center bg-surface">
+                  <h3 className="text-2xl font-serif font-semibold mb-3 text-text-primary group-hover:text-accent-gold transition-colors duration-300">{product.name}</h3>
+                  <p className="text-text-primary/70 font-medium tracking-wider">{product.price}</p>
                 </div>
               </motion.div>
             </Link>
@@ -233,7 +233,7 @@ export default function Home() {
         </div>
         
         <div className="mt-24 text-center">
-          <button suppressHydrationWarning className="border-b-2 border-[#4A0E4E] text-[#4A0E4E] hover:text-[#D4AF37] hover:border-[#D4AF37] pb-2 font-medium tracking-widest uppercase transition-all duration-300 text-sm">
+          <button suppressHydrationWarning className="border-b-2 border-text-primary text-text-primary hover:text-accent-gold hover:border-accent-gold pb-2 font-medium tracking-widest uppercase transition-all duration-300 text-sm">
             View All Collections
           </button>
         </div>
@@ -260,14 +260,14 @@ export default function Home() {
             className="w-full lg:w-1/2 text-center lg:text-left"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">The Art of Craftsmanship</h2>
-            <div className="w-20 h-[2px] bg-[#D4AF37] mb-8 mx-auto lg:mx-0"></div>
-            <p className="text-lg text-[#4A0E4E]/80 font-light leading-relaxed mb-6">
+            <div className="w-20 h-[2px] bg-accent-gold mb-8 mx-auto lg:mx-0"></div>
+            <p className="text-lg text-text-primary/80 font-light leading-relaxed mb-6">
               At Ishu&apos;s Collections, every handbag tells a story of dedication and artistry. We source only the finest genuine leathers and hardware, carefully assembled by master artisans who have perfected their trade over generations.
             </p>
-            <p className="text-lg text-[#4A0E4E]/80 font-light leading-relaxed mb-10">
+            <p className="text-lg text-text-primary/80 font-light leading-relaxed mb-10">
               Our designs are born from a desire to blend timeless elegance with modern functionality, ensuring that your bag isn&apos;t just an accessory, but a loyal companion for life.
             </p>
-            <button suppressHydrationWarning className="text-[#D4AF37] font-medium tracking-widest uppercase text-sm border border-[#D4AF37] px-8 py-3 hover:bg-[#D4AF37] hover:text-white transition-colors duration-300">
+            <button suppressHydrationWarning className="text-accent-gold font-medium tracking-widest uppercase text-sm border border-accent-gold px-8 py-3 hover:bg-accent-gold hover:text-white transition-colors duration-300">
               Read Our Story
             </button>
           </motion.div>
@@ -275,10 +275,10 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-4 bg-[#4A0E4E] text-[#F4F0F7]">
+      <section className="py-24 px-4 bg-text-primary text-bg-primary">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-white">Words of Adoration</h2>
-          <div className="w-24 h-[2px] bg-[#D4AF37] mx-auto mb-16"></div>
+          <div className="w-24 h-[2px] bg-accent-gold mx-auto mb-16"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {testimonials.map((testi, i) => (
@@ -288,12 +288,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="bg-[#F4F0F7]/5 p-10 relative border border-[#D4AF37]/20 hover:border-[#D4AF37] transition-colors duration-300"
+                className="bg-bg-primary/5 p-10 relative border border-accent-gold/20 hover:border-accent-gold transition-colors duration-300"
               >
-                <Quote className="absolute top-6 left-6 w-12 h-12 text-[#D4AF37] opacity-20" />
+                <Quote className="absolute top-6 left-6 w-12 h-12 text-accent-gold opacity-20" />
                 <div className="flex justify-center gap-1 mb-6">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-5 h-5 text-[#D4AF37] fill-current" />
+                    <Star key={j} className="w-5 h-5 text-accent-gold fill-current" />
                   ))}
                 </div>
                 <p className="text-[#E5D3B3] font-light leading-relaxed mb-8 italic relative z-10">

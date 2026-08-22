@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 
 export default function OurStoryPage() {
   return (
-    <div className="min-h-screen bg-[#F4F0F7] text-[#4A0E4E] selection:bg-[#D4AF37] selection:text-white">
+    <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-gold selection:text-white">
       <TopBar />
       <Header />
       
@@ -27,7 +27,7 @@ export default function OurStoryPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-5xl md:text-7xl font-serif font-bold mb-6 text-[#4A0E4E]"
+              className="text-5xl md:text-7xl font-serif font-bold mb-6 text-text-primary"
             >
               Our Heritage
             </motion.h1>
@@ -35,7 +35,7 @@ export default function OurStoryPage() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="w-24 h-[2px] bg-[#D4AF37] mx-auto"
+              className="w-24 h-[2px] bg-accent-gold mx-auto"
             ></motion.div>
           </div>
         </section>
@@ -49,8 +49,8 @@ export default function OurStoryPage() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-serif font-bold mb-6 text-[#4A0E4E]">The Beginning</h2>
-            <p className="text-lg text-[#4A0E4E]/80 font-light leading-relaxed mb-6">
+            <h2 className="text-3xl font-serif font-bold mb-6 text-text-primary">The Beginning</h2>
+            <p className="text-lg text-text-primary/80 font-light leading-relaxed mb-6">
               Founded in 2010, Ishu&apos;s Collections began with a simple yet profound vision: to create luxury handbags that celebrate traditional craftsmanship while embracing modern aesthetics. What started in a small artisan workshop has blossomed into a global symbol of elegance.
             </p>
           </motion.div>
@@ -62,8 +62,8 @@ export default function OurStoryPage() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-serif font-bold mb-6 text-[#4A0E4E]">Our Craftsmanship</h2>
-            <p className="text-lg text-[#4A0E4E]/80 font-light leading-relaxed mb-6">
+            <h2 className="text-3xl font-serif font-bold mb-6 text-text-primary">Our Craftsmanship</h2>
+            <p className="text-lg text-text-primary/80 font-light leading-relaxed mb-6">
               We believe that true luxury lies in the details. Every stitch, every fold, and every piece of hardware is carefully selected and meticulously applied. We source only the finest leathers from sustainable tanneries, ensuring that our products not only look beautiful but also respect the environment.
             </p>
           </motion.div>
@@ -74,8 +74,8 @@ export default function OurStoryPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl font-serif font-bold mb-6 text-[#4A0E4E]">The Promise</h2>
-            <p className="text-lg text-[#4A0E4E]/80 font-light leading-relaxed mb-6">
+            <h2 className="text-3xl font-serif font-bold mb-6 text-text-primary">The Promise</h2>
+            <p className="text-lg text-text-primary/80 font-light leading-relaxed mb-6">
               When you hold an Ishu&apos;s Collections bag, you are holding a piece of art that is designed to last a lifetime. We stand behind our quality with our lifetime authenticity guarantee, promising you an accessory that will age gracefully alongside you.
             </p>
           </motion.div>
