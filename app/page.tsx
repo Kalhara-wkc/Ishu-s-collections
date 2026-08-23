@@ -79,7 +79,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" as any }}
           >
-            <h1 className="text-6xl md:text-8xl font-serif font-bold mb-6 leading-[1.1] text-text-primary">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-bold mb-6 leading-[1.1] text-text-primary">
               Artisan Bags <br className="hidden md:block"/> Modern Style
             </h1>
           </motion.div>
@@ -87,7 +87,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-lg md:text-2xl mb-12 text-text-primary/80 max-w-2xl mx-auto font-light"
+            className="text-base sm:text-lg md:text-2xl mb-12 text-text-primary/80 max-w-2xl mx-auto font-light"
           >
             Discover our exclusive collection of luxury women&apos;s handbags, crafted from the finest materials for the modern sophisticate.
           </motion.p>
