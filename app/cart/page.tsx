@@ -65,7 +65,6 @@ export default function CartPage() {
                           <h3 className="text-xl font-serif font-semibold mb-1 hover:text-accent-gold transition-colors">
                             <Link href={`/product/${item.id}`}>{item.name}</Link>
                           </h3>
-                          <p className="text-sm text-text-primary/60 font-light mb-4">Color: {item.color}</p>
                         </div>
                         <p className="text-lg font-medium">LKR {item.price.toLocaleString()}</p>
                       </div>
