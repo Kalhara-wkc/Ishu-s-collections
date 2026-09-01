@@ -10,13 +10,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 import { useCart } from "../../context/CartContext";
-
-const allProducts = [
-  { id: 1, name: "The Classic Elegance", price: "LKR 12,500", image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?auto=format&fit=crop&q=80&w=800", description: "A timeless masterpiece crafted from full-grain calf leather. Perfect for any occasion that demands sophistication." },
-  { id: 2, name: "Midnight Clutch", price: "LKR 8,900", image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&q=80&w=800", description: "Sleek and mysterious. This clutch is the ultimate companion for your evening gala, featuring gold-plated hardware." },
-  { id: 3, name: "Champagne Tote", price: "LKR 14,500", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&q=80&w=800", description: "Spacious and elegant. The Champagne Tote fits your essentials while maintaining a graceful silhouette." },
-  { id: 4, name: "Onyx Crossbody", price: "LKR 11,000", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800", description: "Hands-free luxury. The Onyx Crossbody is designed for the dynamic woman who refuses to compromise on style." },
-];
+import { allProducts } from "../../data/products";
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const unwrappedParams = use(params);

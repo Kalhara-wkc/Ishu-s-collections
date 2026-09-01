@@ -9,18 +9,22 @@ import TopBar from "./components/TopBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-// Placeholder data for featured collections
+import { allProducts } from "./data/products";
+
 const featuredProducts = [
-  { id: 1, name: "Luxury Collection Bag 1", price: "LKR 1,250", image: "/bags/bag-1.jpg" },
-  { id: 2, name: "Luxury Collection Bag 2", price: "LKR 890", image: "/bags/bag-2.jpg" },
-  { id: 3, name: "Luxury Collection Bag 3", price: "LKR 1,450", image: "/bags/bag-3.jpg" },
-  { id: 4, name: "Luxury Collection Bag 4", price: "LKR 1,100", image: "/bags/bag-4.jpg" },
+  allProducts[0],
+  allProducts[11],
+  allProducts[17],
+  allProducts[32]
 ];
 
 const categories = [
-  { id: 1, name: "Tote Bags", image: "/bags/bag-5.jpg" },
-  { id: 2, name: "Crossbody", image: "/bags/bag-6.jpg" },
-  { id: 3, name: "Clutches", image: "/bags/bag-7.jpg" },
+  { id: 1, name: "Bramble Bags", slug: "bramble-bags", image: "/images/bags/Bramble bags/brambel1.jpg" },
+  { id: 2, name: "PU Leather Bags", slug: "pu-leather-bags", image: "/images/bags/PU leather bags/pu1.jpg" },
+  { id: 3, name: "Cotton Bags", slug: "cotton-bags", image: "/images/bags/cotton bags/Gemini_Generated_Image_69zh969zh969zh96.jpg" },
+  { id: 4, name: "Leather Bags", slug: "leather-bags", image: "/images/bags/leather bags/leather1.jpg" },
+  { id: 5, name: "Purses", slug: "purse", image: "/images/bags/purse/Gemini_Generated_Image_1zuf2t1zuf2t1zuf.jpg" },
+  { id: 6, name: "Summer Bags", slug: "summer-bags", image: "/images/bags/summer bags/summer1.jpg" },
 ];
 
 const testimonials = [
@@ -162,7 +166,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((cat, i) => (
-            <Link href={`/category/${cat.name.toLowerCase().replace(' ', '-')}`} key={cat.id}>
+            <Link href={`/shop?category=${cat.slug}`} key={cat.id}>
               <motion.div 
                 initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}
                 variants={{
